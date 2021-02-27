@@ -1,0 +1,68 @@
+<div class ="col-12">
+    <form  (ngSubmit) ="sendEmail()" >
+    
+        <div class ="col-6">
+            <fieldset>
+                    <label>Subject  </label>    
+                <input type = "text" name= "subject" [(ngModel)]= "email.subject" class = "form-control"><br>
+                </fieldset>
+                <fieldset >
+                <label>From Email  </label>
+                <input type = "text" name= "fromEmail" [(ngModel)]= "email.fromEmail" class = "form-control"><br></fieldset>
+                <fieldset >
+                <label>Email Body  </label>
+                <input type = "text" name= "emailBody" [(ngModel)]= "email.emailBody" class = "form-control"><br></fieldset>
+                <fieldset >
+        
+   
+                <label>Company Name  </label>
+                <input type = "text" name= "companyName"[(ngModel)]= "email.companyName"  class = "form-control"><br></fieldset>
+                <fieldset >
+                <label>From Name  </label>
+                <input type = "text" name= "fromName" [(ngModel)]= "email.fromName"  class = "form-control"><br></fieldset> 
+                <!-- <fieldset >
+                <label>sendTo  </label>
+                
+                <input type = "text" name= "sendTo" [(ngModel)]= "email.sendTo" class = "form-control"><br></fieldset > -->
+                <div class="form-group">
+                <label for="website">Send To</label>
+                <select formControlName="website" class="form-control" (change)="open(mymodal)">
+                    <option disabled>Select Type</option>
+                    <option>Choose Type</option>
+                    <option *ngFor="let web of websiteList">{{web}}</option>
+                </select>
+            </div>
+                <button type = "submit" class = "btn btn-success">Submit</button>
+        </div>
+</form>
+
+
+   
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <ul>
+       
+        <li *ngFor="let n of emails">
+            <input type="checkbox"  value='{{n}}' ng-model="invite.who"
+            name="emails"
+            >
+     {{n.sendTo}}
+        </li>
+      </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">ADD</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">UPDATE</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">DELETE</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+
+  </div>
+</ng-template>
+</div>
